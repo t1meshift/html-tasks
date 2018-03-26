@@ -2,13 +2,14 @@
 <head>
 	<title>Мой сайт</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="print-style.css">
 </head>
 <body>
 	<table width="90%" align="center">
 	<tr>
 		<td bgcolor="#cccccc" colspan="3">
 			<h2>Мой сайт</h2>
-			<div class="links">
+			<div class="links not-printable">
 				<span>
 					<a href="task2.html">Главная </a> 
 				</span>
@@ -22,12 +23,12 @@
 		</td>
 	</tr>
 	<tr>
-		<td width="10%" valign="top">
+		<td width="10%" valign="top" class="not-printable">
 			<img width="90%" src="klenin.jpg" 
 			onmouseover="this.src='klenin_i.jpg'"
 			onmouseout="this.src='klenin.jpg'"/>
 		</td>
-		<td width="80%">
+		<td width="80%" id="content">
 			<h3 align="center">Главная</h3>
 			<div>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -44,12 +45,12 @@
 				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</div>
 		</td>
-		<td width="10%" valign="top">
+		<td width="10%" valign="top" class="not-printable">
 			<a href="https://github.com/t1meshift"><img src="GitHub.png" width="100%"/></a>
 			<a href="https://pornhub.com"><img src="Pornhub.png" width="100%"/></a>
 		</td>
 	</tr>
-	<tr bgcolor="#cccccc">
+	<tr bgcolor="#cccccc" class="not-printable">
 		<td>
 			<a href="task2.html">Главная</a>
 		</td>

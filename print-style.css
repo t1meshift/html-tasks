@@ -1,6 +1,17 @@
 @media print {
-	.not-printable {
+	.not-printable, img {
 		display: none;
-		visibility: hidden;
+		/*visibility: hidden;*/
+	}
+	.block-content {
+		width: 100%;
+	}
+	#poem-content {
+		width: 80%;
+		margin-left: 15%;
+		display: inline-block;
+	}
+	#JUST-MONIKA {
+		display: none;
 	}
 }

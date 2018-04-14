@@ -183,6 +183,7 @@
 
                             function getSnakeMatrix() {
                                 let output = document.getElementById("task4-result");
+                                output.textContent = "";
                                 let size = document.getElementById("task4-size").value;
                                 if (!isNumeric(size) || size < 2 || !Number.isInteger(size = parseFloat(size))) {
                                     output.textContent = "Некорректный размер матрицы!";

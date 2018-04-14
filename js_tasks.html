@@ -154,15 +154,24 @@
                     </div>
                     <div>
                         <h4>Функции</h4>
+                        <form onsubmit="return getSnakeMatrix();">
+                            <input type="number" min="2" max="16" step="1" id="task4-size" placeholder="Размерность матрицы"/>
+                            <br>
+                            <input type="number" min="-99" max="99" step="1" id="task4-min" placeholder="Минимальный элемент"/>
+                            <br>
+                            <input type="number" min="-99" max="99" step="1" id="task4-max" placeholder="Максимальный элемент"/>
+                            <br>
+                            <input type="button" value="Рассчитать" onclick="getSnakeMatrix()">
+                        </form>
                         <code id="task4-result"></code>
                         <script type="text/javascript">
                             function getRandomInt(min, max) {
                                 return min + Math.round(Math.random()*(max-min));
                             }
-                            function getArray(n) {
+                            function getArray(n, min, max) {
                                 let result = [];
                                 for (let i = 0; i < n; ++i) {
-                                    result.push(getRandomInt(-50, 50));
+                                    result.push(getRandomInt(min, max));
                                 }
                                 return result;
                             }
@@ -172,23 +181,42 @@
                                 });
                             }
 
-                            let numbers = getResultArray(getArray(64));
-                            console.log(numbers.length);
-                            let result = new Array(8);
-                            let step = -1;
-                            let j = 7;
-
-                            for (let i = 7; i >= 0; --i) {
-                                result[i] = new Array(8);
-                                while (j >= 0 && j <= 7) {
-                                    result[i][j] = numbers.shift();
-                                    j += step;
+                            function getSnakeMatrix() {
+                                let output = document.getElementById("task4-result");
+                                let size = document.getElementById("task4-size").value;
+                                if (!isNumeric(size) || size < 2 || Number.isInteger(size = parseFloat(size))) {
+                                    output.textContent = "Некорректный размер матрицы!";
+                                    return false;
                                 }
-                                step = -step;
-                                j = Math.min(j, 7);
-                                j = Math.max(j, 0);
+                                let arrMin = document.getElementById("task4-min").value;
+                                let arrMax = document.getElementById("task4-max").value;
+                                if (!isNumeric(arrMin) || Number.isInteger(arrMin = parseFloat(arrMin))) {
+                                    output.textContent = "Некорректный минимум!";
+                                    return false;
+                                }
+                                if (!isNumeric(arrMax) || Number.isInteger(arrMax = parseFloat(arrMax))) {
+                                    output.textContent = "Некорректный максимум!";
+                                    return false;
+                                }
+
+                                let numbers = getResultArray(getArray(size*size, Math.min(arrMin, arrMax), Math.max(arrMin, arrMax)));
+                                let result = new Array(8);
+                                let step = -1;
+                                let j = 7;
+
+                                for (let i = 7; i >= 0; --i) {
+                                    result[i] = new Array(8);
+                                    while (j >= 0 && j <= 7) {
+                                        result[i][j] = numbers.shift();
+                                        j += step;
+                                    }
+                                    step = -step;
+                                    j = Math.min(j, 7);
+                                    j = Math.max(j, 0);
+                                }
+                                showMatrix(result, output);
+                                return false;
                             }
-                            showMatrix(result, document.getElementById("task4-result"));
                         </script>
                     </div>
                 </div>

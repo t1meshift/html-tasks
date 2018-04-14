@@ -136,7 +136,7 @@
                             for (let i = 0; i < 8; ++i) {
                                 let curr_positive = 0;
                                 for (let j = 0; j < 8; ++j) {
-                                    curr_positive = src[j][i] > 0;
+                                    curr_positive += src[j][i] > 0;
                                 }
                                 if (curr_positive > max_positive[1]) {
                                     max_positive[0] = i;

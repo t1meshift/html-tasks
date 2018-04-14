@@ -79,6 +79,7 @@
                         </script>
                         <h4>Площадь круга</h4>
                         <form onsubmit="return getCircleS();">
+                            <label>Радиус круга </label>
                             <input type="number" min="0" step="0.1" id="task1-radius" placeholder="Радиус круга"/>
                             <input type="button" value="Рассчитать" onclick="getCircleS()">
                             <p id="task1-answer"></p>
@@ -103,22 +104,68 @@
                     </div>
                     <div>
                         <h4>Работа с матрицами</h4>
-                        <code id="task3-src"></code>
+                        <pre id="task3-src"></pre>
                         <p>
                             Задана матрица В(8,8). Поменять местами элементы столбца, содержащего большее число положительных элементов, и элементы главной диагонали.
                         </p>
-                        <code id="task3-dst"></code>
+                        <pre id="task3-dst"></pre>
                         <script type="text/javascript">
+                            function markElement(a, isRed, inv) {
+                                if ((isRed && !inv) || (!isRed && inv)) {
+                                    if (a.style.color === "")
+                                        a.style.color = "#f00";
+                                    else
+                                        a.style.color = "#880";
+                                } else {
+                                    if (a.style.color === "")
+                                        a.style.color = "#0f0";
+                                    else
+                                        a.style.color = "#880";
+                                }
+                                return a;
+                            }
+
                             function showMatrix(matrix, domElem) {
+                                let cellSize = Math.max.apply(null, matrix.map(row => {
+                                    return Math.max.apply(null, row.map(value => {
+                                        return value.toString().length;
+                                    })) + 1;
+                                }));
                                 for (let i = 0; i < matrix.length; ++i) {
                                     for (let j = 0; j < matrix[i].length; ++j) {
                                         let content = matrix[i][j] + " ";
-                                        while (content.length < 5) {
+                                        while (content.length < cellSize) {
                                             content = " " + content;
                                         }
                                         domElem.textContent += content;
                                     }
                                     domElem.textContent += "\r\n";
+                                }
+                            }
+                            function highlightMatrix(matrix, domElem, colIndex, inv) {
+                                let cellSize = Math.max.apply(null, matrix.map(row => {
+                                    return Math.max.apply(null, row.map(value => {
+                                        return value.toString().length;
+                                    })) + 1;
+                                }));
+                                for (let i = 0; i < matrix.length; ++i) {
+                                    for (let j = 0; j < matrix[i].length; ++j) {
+                                        let content = matrix[i][j] + " ";
+                                        while (content.length < cellSize) {
+                                            content = " " + content;
+                                        }
+                                        var cell = document.createElement("span");
+                                        cell.innerHTML = content;
+                                        if (i === j) {
+                                            cell = markElement(cell, 1, inv);
+                                        }
+                                        if (j === colIndex) {
+                                            cell = markElement(cell, 0, inv);
+                                        }
+                                        domElem.appendChild(cell);
+                                    }
+                                    let br = document.createElement("br");
+                                    domElem.appendChild(br);
                                 }
                             }
 
@@ -131,7 +178,6 @@
                                 src.push(row);
                             }
                             let dst = src;
-                            showMatrix(src, document.getElementById("task3-src"));
                             let max_positive = [-1, -1];
                             for (let i = 0; i < 8; ++i) {
                                 let curr_positive = 0;
@@ -149,21 +195,25 @@
                                 dst[i][i] = b;
                                 dst[i][max_positive[0]] = a;
                             }
-                            showMatrix(dst, document.getElementById("task3-dst"));
+                            highlightMatrix(src, document.getElementById("task3-src"), max_positive[0], 0);
+                            highlightMatrix(dst, document.getElementById("task3-dst"), max_positive[0], 1);
                         </script>
                     </div>
                     <div>
                         <h4>Функции</h4>
                         <form onsubmit="return getSnakeMatrix();">
+                            <label>Размерность матрицы </label>
                             <input type="number" min="2" max="16" step="1" value="8" id="task4-size" placeholder="Размерность матрицы"/>
                             <br>
-                            <input type="number" min="-99" max="99" value="-50" step="1" id="task4-min" placeholder="Минимальный элемент"/>
+                            <label>Минимальный элемент </label>
+                            <input type="number" min="-100" max="100" value="-50" step="1" id="task4-min" placeholder="Минимальный элемент"/>
                             <br>
-                            <input type="number" min="-99" max="99" step="1" value="50" id="task4-max" placeholder="Максимальный элемент"/>
+                            <label>Максимальный элемент </label>
+                            <input type="number" min="-100" max="100" step="1" value="50" id="task4-max" placeholder="Максимальный элемент"/>
                             <br>
                             <input type="button" value="Рассчитать" onclick="getSnakeMatrix()">
                         </form>
-                        <code id="task4-result"></code>
+                        <pre id="task4-result"></pre>
                         <script type="text/javascript">
                             function getRandomInt(min, max) {
                                 return min + Math.round(Math.random()*(max-min));
@@ -215,6 +265,7 @@
                                     j = Math.min(j, size-1);
                                     j = Math.max(j, 0);
                                 }
+
                                 showMatrix(result, output);
                                 return false;
                             }

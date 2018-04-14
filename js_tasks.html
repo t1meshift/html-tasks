@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой сайт</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="print-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Мой сайт</h2>
+            <div class="menu not-printable">
+                <div class="menu-item">
+                    <p class="menu-item-name">Меню</p>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <p class="menu-item-name">Task 1</p>
+                        </div>
+                        <div class="menu-item">
+                            <p class="menu-item-name">Task 2</p>
+                            <div class="menu-items">
+                                <div class="menu-item">
+                                    <p class="menu-item-name"><a href="task2_css.html">Главная</a></p>
+                                </div>
+                                <div class="menu-item">
+                                    <p class="menu-item-name"><a href="poem_css.html">Стихотворение</a></p>
+                                </div>
+                                <div class="menu-item">
+                                    <p class="menu-item-name"><a href="about_css.html">Обо мне</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <p class="menu-item-name">Task 3</p>
+                            <div class="menu-items">
+                                <div class="menu-item">
+                                    <p class="menu-item-name"><a href="mathml.html">MathML + SVG</a></p>
+                                </div>
+                                <div class="menu-item">
+                                    <p class="menu-item-name"><a href="js_tasks.html">JS showcase</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div class="block-left not-printable">
+                <img width="90%" src="klenin.jpg"
+                     onmouseover="this.numbers='klenin_i.jpg'"
+                     onmouseout="this.numbers='klenin.jpg'"/>
+            </div>
+            <div class="block-content">
+                <h3>JS таски</h3>
+                <div>
+                    <div>
+                        <script type="text/javascript">
+                            function isNumeric(n) {
+                                return !isNaN(parseFloat(n)) && isFinite(n);
+                            }
+
+                            function getCircleS() {
+                                var radius = document.getElementById("task1-radius").value;
+                                var answer = document.getElementById("task1-answer");
+                                if (!isNumeric(radius)) {
+                                    answer.textContent = "Ввод не является числом!";
+                                    return false;
+                                }
+                                radius = parseFloat(radius);
+                                if (radius < 0) {
+                                    answer.textContent = "Радиус не может быть отрицательным!";
+                                    return false;
+                                }
+                                answer.textContent = "Площадь: " + (Math.PI*radius*radius);
+                                return false;
+                            }
+                        </script>
+                        <h4>Площадь круга</h4>
+                        <form onsubmit="return getCircleS();">
+                            <input type="number" min="0" step="0.1" id="task1-radius" placeholder="Радиус круга"/>
+                            <input type="button" value="Рассчитать" onclick="getCircleS()">
+                            <p id="task1-answer"></p>
+                        </form>
+                    </div>
+                    <div>
+                        <h4>Расчёт частного циклом</h4>
+                        <p>(3+6+…+33)/(1+2+З...+10) = <span id="task2-result">...</span></p>
+                        <script type="text/javascript">
+                            var task2 = document.getElementById("task2-result");
+
+                            var dividend = 0;
+                            var divisor = 0;
+
+                            for (let i = 3; i <= 33; i += 3)
+                                dividend += i;
+                            for (let i = 1; i <= 10; ++i)
+                                divisor += i;
+
+                            task2.textContent = (dividend/divisor).toString();
+                        </script>
+                    </div>
+                    <div>
+                        <h4>Работа с матрицами</h4>
+                        <code id="task3-src"></code>
+                        <p>
+                            Задана матрица В(8,8). Поменять местами элементы столбца, содержащего большее число положительных элементов, и элементы главной диагонали.
+                        </p>
+                        <code id="task3-dst"></code>
+                        <script type="text/javascript">
+                            function showMatrix(matrix, domElem) {
+                                for (let i = 0; i < matrix.length; ++i) {
+                                    for (let j = 0; j < matrix[i].length; ++j) {
+                                        let content = matrix[i][j] + " ";
+                                        while (content.length < 5) {
+                                            content = " " + content;
+                                        }
+                                        domElem.textContent += content;
+                                    }
+                                    domElem.textContent += "\r\n";
+                                }
+                            }
+
+                            let src = [];
+                            for (let i = 0; i < 8; ++i) {
+                                let row = [];
+                                for (let j = 0; j < 8; ++j) {
+                                    row.push(Math.floor(Math.random()*101)-50);
+                                }
+                                src.push(row);
+                            }
+                            let dst = src;
+                            showMatrix(src, document.getElementById("task3-src"));
+                            let max_positive = [-1, -1];
+                            for (let i = 0; i < 8; ++i) {
+                                let curr_positive = 0;
+                                for (let j = 0; j < 8; ++j) {
+                                    curr_positive = src[j][i] > 0;
+                                }
+                                if (curr_positive > max_positive[1]) {
+                                    max_positive[0] = i;
+                                    max_positive[1] = curr_positive;
+                                }
+                            }
+                            for (let i = 0; i < 8; ++i) {
+                                let a = src[i][i];
+                                let b = src[i][max_positive[0]];
+                                dst[i][i] = b;
+                                dst[i][max_positive[0]] = a;
+                            }
+                            showMatrix(dst, document.getElementById("task3-dst"));
+                        </script>
+                    </div>
+                    <div>
+                        <h4>Функции</h4>
+                        <code id="task4-result"></code>
+                        <script type="text/javascript">
+                            function getRandomInt(min, max) {
+                                return min + Math.round(Math.random()*(max-min));
+                            }
+                            function getArray(n) {
+                                let result = [];
+                                for (let i = 0; i < n; ++i) {
+                                    result.push(getRandomInt(-50, 50));
+                                }
+                                return result;
+                            }
+                            function getResultArray(a) {
+                                return a.sort((a, b) => {
+                                    return parseFloat(a)-parseFloat(b);
+                                });
+                            }
+
+                            let numbers = getResultArray(getArray(64));
+                            console.log(numbers.length);
+                            let result = new Array(8);
+                            let step = -1;
+                            let j = 7;
+
+                            for (let i = 7; i >= 0; --i) {
+                                result[i] = new Array(8);
+                                while (j >= 0 && j <= 7) {
+                                    result[i][j] = numbers.shift();
+                                    j += step;
+                                }
+                                step = -step;
+                                j = Math.min(j, 7);
+                                j = Math.max(j, 0);
+                            }
+                            showMatrix(result, document.getElementById("task4-result"));
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="block-right not-printable">
+                <a href="https://github.com/t1meshift"><img src="GitHub.png" width="100%"/></a>
+                <a href="https://pornhub.com"><img src="Pornhub.png" width="100%"/></a>
+            </div>
+        </div>
+        <div class="footer not-printable">
+            <div class="left"><a href="task2_css.html">Главная</a></div>
+            <div class="right">Powered by Spice Diamond and JWH-018</div>
+        </div>
+    </div>
+</body>
+</html>

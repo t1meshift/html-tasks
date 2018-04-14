@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="SVGRoot"
+   version="1.1"
+   viewBox="0 0 128 128"
+   height="128px"
+   width="128px">
+  <defs
+     id="defs29" />
+  <metadata
+     id="metadata32">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <rect
+       y="45.431374"
+       x="14.431371"
+       height="59.137257"
+       width="99.137253"
+       id="rect47"
+       style="fill:#e7bd0d;fill-opacity:1;stroke:#000000;stroke-width:0.86274147" />
+    <text
+       id="text55"
+       y="53.25"
+       x="44"
+       style="font-style:normal;font-weight:normal;font-size:8px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="53.25"
+         x="44"
+         id="tspan53">БОЦМАН</tspan></text>
+    <rect
+       y="60.470421"
+       x="20.470425"
+       height="44.059151"
+       width="24.059153"
+       id="rect4567"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.94084805" />
+    <path
+       id="path4569"
+       d="M 41.5,78 V 88"
+       style="fill:none;stroke:#000000;stroke-width:0.94280905px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <rect
+       y="63.648426"
+       x="25.398424"
+       height="19.20315"
+       width="14.20315"
+       id="rect4571"
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.79684961" />
+    <path
+       id="path4573"
+       d="m 38.722426,65.404101 -10.592091,7.122589 7.564682,2.179793 -6.588595,3.875184"
+       style="fill:none;stroke:#ffffff;stroke-width:0.9724353px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <rect
+       y="60.55098"
+       x="50.55098"
+       height="23.898037"
+       width="53.898037"
+       id="rect4577"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10196197" />
+    <path
+       id="path4581"
+       d="M 15.267504,45.013636 64.003221,1.1543102 112.73894,45.013636 Z"
+       style="fill:#e7bd0d;stroke:#000000;stroke-width:0.97272766px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+    <ellipse
+       ry="5.9595919"
+       rx="16.262615"
+       cy="115.57577"
+       cx="44.545425"
+       id="path4613"
+       style="fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="path4617"
+       d="m 4,108 v 10 h 6 V 108 C 8.7578465,107.22234 7.8663606,105.05373 8,103 H 6 c 0.00457,2.06828 -0.82194,3.72089 -2,5 z m 0,0 h 6"
+       style="fill:#552200;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="110.25751"
+       x="4.2575068"
+       height="4.4849858"
+       width="5.4849858"
+       id="rect4619"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51501405;stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       transform="scale(1.0227924,0.97771552)"
+       id="text4623"
+       y="116.08694"
+       x="4.1695399"
+       style="font-style:normal;font-weight:normal;font-size:2.80599976px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.05224991"
+       xml:space="preserve"><tspan
+         style="stroke-width:1.05224991"
+         y="116.08694"
+         x="4.1695399"
+         id="tspan4621">777</tspan></text>
+    <path
+       id="path4625"
+       d="M 91.423844,25.433875 V 2.5779135 H 82.567159 V 18.005687 Z"
+       style="fill:#cccccc;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+</svg>

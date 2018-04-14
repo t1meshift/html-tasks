@@ -155,11 +155,11 @@
                     <div>
                         <h4>Функции</h4>
                         <form onsubmit="return getSnakeMatrix();">
-                            <input type="number" min="2" max="16" step="1" id="task4-size" placeholder="Размерность матрицы"/>
+                            <input type="number" min="2" max="16" step="1" value="8" id="task4-size" placeholder="Размерность матрицы"/>
                             <br>
-                            <input type="number" min="-99" max="99" step="1" id="task4-min" placeholder="Минимальный элемент"/>
+                            <input type="number" min="-99" max="99" value="-50" step="1" id="task4-min" placeholder="Минимальный элемент"/>
                             <br>
-                            <input type="number" min="-99" max="99" step="1" id="task4-max" placeholder="Максимальный элемент"/>
+                            <input type="number" min="-99" max="99" step="1" value="50" id="task4-max" placeholder="Максимальный элемент"/>
                             <br>
                             <input type="button" value="Рассчитать" onclick="getSnakeMatrix()">
                         </form>
@@ -184,34 +184,34 @@
                             function getSnakeMatrix() {
                                 let output = document.getElementById("task4-result");
                                 let size = document.getElementById("task4-size").value;
-                                if (!isNumeric(size) || size < 2 || Number.isInteger(size = parseFloat(size))) {
+                                if (!isNumeric(size) || size < 2 || !Number.isInteger(size = parseFloat(size))) {
                                     output.textContent = "Некорректный размер матрицы!";
                                     return false;
                                 }
                                 let arrMin = document.getElementById("task4-min").value;
                                 let arrMax = document.getElementById("task4-max").value;
-                                if (!isNumeric(arrMin) || Number.isInteger(arrMin = parseFloat(arrMin))) {
+                                if (!isNumeric(arrMin) || !Number.isInteger(arrMin = parseFloat(arrMin))) {
                                     output.textContent = "Некорректный минимум!";
                                     return false;
                                 }
-                                if (!isNumeric(arrMax) || Number.isInteger(arrMax = parseFloat(arrMax))) {
+                                if (!isNumeric(arrMax) || !Number.isInteger(arrMax = parseFloat(arrMax))) {
                                     output.textContent = "Некорректный максимум!";
                                     return false;
                                 }
 
                                 let numbers = getResultArray(getArray(size*size, Math.min(arrMin, arrMax), Math.max(arrMin, arrMax)));
-                                let result = new Array(8);
+                                let result = new Array(size);
                                 let step = -1;
-                                let j = 7;
+                                let j = size-1;
 
-                                for (let i = 7; i >= 0; --i) {
-                                    result[i] = new Array(8);
-                                    while (j >= 0 && j <= 7) {
+                                for (let i = size-1; i >= 0; --i) {
+                                    result[i] = new Array(size);
+                                    while (j >= 0 && j <= size-1) {
                                         result[i][j] = numbers.shift();
                                         j += step;
                                     }
                                     step = -step;
-                                    j = Math.min(j, 7);
+                                    j = Math.min(j, size-1);
                                     j = Math.max(j, 0);
                                 }
                                 showMatrix(result, output);

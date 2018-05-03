@@ -189,13 +189,16 @@
                                     max_positive[1] = curr_positive;
                                 }
                             }
+                            highlightMatrix(src, document.getElementById("task3-src"), max_positive[0], 0);
                             for (let i = 0; i < 8; ++i) {
+                                //console.log("before", dst[i][i], dst[i][max_positive[0]]);
                                 let a = src[i][i];
                                 let b = src[i][max_positive[0]];
                                 dst[i][i] = b;
                                 dst[i][max_positive[0]] = a;
+                                //Sconsole.log("after", dst[i][i], dst[i][max_positive[0]]);
                             }
-                            highlightMatrix(src, document.getElementById("task3-src"), max_positive[0], 0);
+                            //console.log(src, dst);
                             highlightMatrix(dst, document.getElementById("task3-dst"), max_positive[0], 1);
                         </script>
                     </div>

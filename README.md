@@ -8,3 +8,4 @@ Welcome to my HTML tasks page.
 3. [Task #2 but using CSS + print media query](task2_css.html "Task 2.1")
 4. [MathML+SVG showcase](mathml.html "Task 3")
 5. [JS showcase](js_tasks.html "Task 3")
+6. Lists [without jQuery](lists_no_jq.html)/[with jQuery](lists_jq.html)

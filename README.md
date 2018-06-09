@@ -9,3 +9,4 @@ Welcome to my HTML tasks page.
 4. [MathML+SVG showcase](mathml.html "Task 3")
 5. [JS showcase](js_tasks.html "Task 3")
 6. Lists [without jQuery](lists_no_jq.html)/[with jQuery](lists_jq.html)
+7. [Using HTML5 canvas and ES6 classes](task5_es6.html "Task 5")

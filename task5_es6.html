@@ -18,7 +18,7 @@
 
         class Collisions {
             static collide(a, b) {
-                console.log(a, b);
+                //console.log(a, b);
                 switch (a.constructor.name) {
                     case "TBall":
                         switch (b.constructor.name) {
@@ -44,12 +44,8 @@
             }
 
             static rect2rect(a, b) {
-                if ((b.posX >= a.posX && b.posX <= a.posX + a.width) || (a.posX >= b.posX && a.posX <= b.posX + b.width)) {
-                    if ((b.posY >= a.posY && b.posY <= a.posY + a.height) || (a.posX >= b.posX && a.posX <= b.posX + b.height)) {
-                        return true;
-                    }
-                }
-                return false;
+                return (a.posX <= b.posX + b.width) && (b.posX <= a.posX + a.width) && (a.posY <= b.posY + b.height) &&
+                    (b.posY <= a.posY + a.height);
             }
 
             static rect2ball(a, b) {

@@ -21,6 +21,7 @@
                 //console.log(a, b);
                 switch (a.constructor.name) {
                     case "TBall":
+                    case "TBullet":
                         switch (b.constructor.name) {
                             case "TBall":
                                 return this.ball2ball(a, b);
@@ -33,6 +34,7 @@
                     case "TSquare":
                         switch (b.constructor.name) {
                             case "TBall":
+                            case "TBullet":
                                 return this.rect2ball(a, b);
                             case "TRect":
                             case "TSquare":
@@ -111,9 +113,14 @@
 
         const spdGrow = 0.4;
         const maxSize = 50;
+        const airResistance = 0.05;
+        const gravity = 0.35;
+        const freeFallAccel = 5;
 
         var canvas, ctx, figures, idTimer = -1;
         var direction = Direction.CHAOS;
+        var gunAngle = 0;
+        var bulletX = 0, bulletY = 0;
 
         class TFigure {
             constructor(pX, pY, dir) {
@@ -190,6 +197,22 @@
 
             size() {
                 return this.radius;
+            }
+        }
+
+        class TBullet extends TBall {
+            constructor(pX, pY, accelX, accelY) {
+                super(pX, pY, null);
+                this.radius = 20;
+                this.accelX = accelX;
+                this.accelY = accelY;
+            }
+
+            move() {
+                this.posX += this.accelX;
+                this.accelX = Math.max(0, this.accelX - airResistance);
+                this.posY += this.accelY;
+                this.accelY = Math.min(freeFallAccel, this.accelY + gravity);
             }
         }
 
@@ -298,9 +321,15 @@
             let mousePos = getMousePos(event);
             let x = mousePos.x;
             let y = mousePos.y;
-            let item = createItem(x, y);
-            item.draw(ctx);
-            figures.push(item);
+            //let item = createItem(x, y);
+            //item.draw(ctx);
+            //figures.push(item);
+
+            let accelX = canvas.width*Math.sin(gunAngle) / 24;
+            let accelY = -canvas.height*Math.cos(gunAngle) / 24;
+            let bullet = new TBullet(bulletX, bulletY, accelX, accelY);
+            bullet.draw(ctx);
+            figures.push(bullet);
         }
 
         function checkCollisions() {
@@ -319,10 +348,32 @@
             }
         }
 
+        function calcGun(evt) {
+            let mousePos = getMousePos(evt);
+            let x = mousePos.x;
+            let y = mousePos.y;
+
+            gunAngle = Math.atan2(y, canvas.width - x);
+            bulletX = 50*Math.cos(gunAngle) - 20;
+            bulletY = canvas.height - 50*Math.sin(gunAngle) + 10;
+        }
+        function drawGun() {
+            ctx.save();
+            ctx.translate(-1, canvas.height);
+            ctx.rotate(gunAngle);
+            ctx.beginPath();
+            ctx.rect(-10, -45, 20, 50);
+            ctx.fillStyle="gold";
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore();
+        }
+
         function moveItems() {
             //реализация движения шариков, находящихся в массиве balls
             drawBack(ctx, '#202020', '#aaa', canvas.width, canvas.height);
             checkCollisions();
+            //drawGun(ctx);
             for (let i = 0; i < figures.length;) {
                 figures[i].move();
                 figures[i].draw(ctx);
@@ -332,6 +383,7 @@
                 else
                     i++;
             }
+            drawGun();
         }
 
         function move() {
@@ -349,7 +401,7 @@
 <table>
     <tr>
         <td>
-            <canvas id="canvas" width="600" height="400" onclick="goInput(event);"></canvas>
+            <canvas id="canvas" width="600" height="400" onclick="goInput(event);" onmousemove="calcGun(event);"></canvas>
         </td>
         <td>
             <form>
